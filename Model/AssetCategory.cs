@@ -2,7 +2,7 @@
 
 namespace AssetTracker.Api.Model
 {
-    public class AssetCategories
+    public class AssetCategory
     {
         public int AssetCategoryId { get; set; }
 

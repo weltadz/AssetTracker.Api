@@ -50,9 +50,9 @@ namespace AssetTracker.Api.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             //Asset Category
-            modelBuilder.Entity<AssetCategories>()
+            modelBuilder.Entity<AssetCategory>()
                 .HasMany(astc => astc.Assets)
-                .WithOne(ast => ast.AssetCategories)
+                .WithOne(ast => ast.AssetCategory)
                 .HasForeignKey(ast => ast.AssetCategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -70,6 +70,24 @@ namespace AssetTracker.Api.Data
                 .HasForeignKey(ast => ast.AssetLocationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //Role
+            modelBuilder.Entity<Role>()
+                .HasMany(r => r.Users)
+                .WithOne(U => U.Role)
+                .HasForeignKey(u => u.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Asset> Assets { get; set; }
+
+        public DbSet<AssetLocation> AssetLocations { get; set; }
+
+        public DbSet<AssetStatus> AssetStatus { get; set; }
+
+        public DbSet<AssetAssignment> AssetAssignments { get; set; }
+
+        public DbSet<AssetCategory> AssetCategories { get; set; }
     }
 }

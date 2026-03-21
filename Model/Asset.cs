@@ -13,7 +13,7 @@ namespace AssetTracker.Api.Model
         public string AssetName { get; set; } = null!;
 
         public int AssetCategoryId { get; set; }
-        public AssetCategories AssetCategories { get; set; } = null!;
+        public AssetCategory AssetCategory { get; set; } = null!;
 
         public int AssetStatusId { get; set; }
         public AssetStatus AssetStatus { get; set; } = null!;

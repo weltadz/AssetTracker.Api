@@ -18,6 +18,9 @@ namespace AssetTracker.Api.Model
         public int DepartmentId { get; set; }
         public Department Department { get; set; } = null!;
 
+        public int RoleId { get; set; }
+        public Role Role { get; set; } = null!;
+
         public DateTime CreatedAt { get; set; }
 
         public bool IsActive {  get; set; }
