@@ -89,5 +89,9 @@ namespace AssetTracker.Api.Data
         public DbSet<AssetAssignment> AssetAssignments { get; set; }
 
         public DbSet<AssetCategory> AssetCategories { get; set; }
+
+        public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
     }
 }

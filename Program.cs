@@ -1,5 +1,7 @@
 using AssetTracker.Api.Data;
+using AssetTracker.Api.Service.Interface;
 using Microsoft.EntityFrameworkCore;
+using AssetTracker.Api.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 var AssetTracker = builder.Configuration.GetConnectionString("AssetTracker");
@@ -7,6 +9,7 @@ var AssetTracker = builder.Configuration.GetConnectionString("AssetTracker");
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AssetDbContext>(options => options.UseSqlServer(AssetTracker));
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
