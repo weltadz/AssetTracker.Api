@@ -3,6 +3,7 @@ using AssetTracker.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetTracker.Api.Migrations
 {
     [DbContext(typeof(AssetDbContext))]
-    partial class AssetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260401030106_RenameColumnOnAssetStatus")]
+    partial class RenameColumnOnAssetStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

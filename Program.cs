@@ -14,6 +14,7 @@ var Asset_Tracker_Db = builder.Configuration.GetConnectionString("Asset_Tracker_
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AssetDbContext>(options => options.UseSqlServer(Asset_Tracker_Db));
 builder.Services.AddScoped<IAssetCategoryService, AssetCategoryService>();
+builder.Services.AddScoped<IAssetLocationService, AssetLocationService>();
 
 //Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();

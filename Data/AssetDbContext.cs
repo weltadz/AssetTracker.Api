@@ -24,7 +24,7 @@ namespace AssetTracker.Api.Data
             //Location
             modelBuilder.Entity<AssetLocation>()
                 .HasMany(l => l.Assets)
-                .WithOne(a => a.Location)
+                .WithOne(a => a.AssetLocation)
                 .HasForeignKey(a => a.LocationId)
                 .OnDelete(DeleteBehavior.Restrict);
 

@@ -7,7 +7,7 @@ namespace AssetTracker.Api.Model
         public int AssetStatusId { get; set; }
 
         [MaxLength(60)]
-        public string StatusName { get; set; } = null!;
+        public string AssetStatusName { get; set; } = null!;
 
         public ICollection<Asset> Assets { get; set; } = new List<Asset>();
     }

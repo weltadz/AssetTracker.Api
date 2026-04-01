@@ -3,6 +3,7 @@ using AssetTracker.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetTracker.Api.Migrations
 {
     [DbContext(typeof(AssetDbContext))]
-    partial class AssetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260401025718_RenameColumnOnAssetLocation")]
+    partial class RenameColumnOnAssetLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +106,7 @@ namespace AssetTracker.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssetStatusId"));
 
-                    b.Property<string>("AssetStatusName")
+                    b.Property<string>("StatusName")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
@@ -144,7 +147,7 @@ namespace AssetTracker.Api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("AssetTracker.Api.Model.AssetLocation", "AssetLocation")
+                    b.HasOne("AssetTracker.Api.Model.AssetLocation", "Location")
                         .WithMany("Assets")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -158,7 +161,7 @@ namespace AssetTracker.Api.Migrations
 
                     b.Navigation("AssetCategory");
 
-                    b.Navigation("AssetLocation");
+                    b.Navigation("Location");
 
                     b.Navigation("Status");
                 });
