@@ -30,5 +30,19 @@ namespace AssetTracker.Api.Controllers
             await _assetCategoryService.CreateAssetCategoryAsync(dto);
             return Ok(new { message = "Asset category successfully created" });
         }
+
+        [HttpPatch("{assetCategoryId}")]
+        public async Task<IActionResult> PatchAssetCategoryAsync(int assetCategoryId, PatchAssetCategoryDto dto)
+        {
+            await _assetCategoryService.PatchAssetCategoryAsync(assetCategoryId ,dto);
+            return Ok(new { message = "Asset category successfully updated" });
+        }
+
+        [HttpDelete("{assetCategoryId}")]
+        public async Task<IActionResult> DeleteAssetCategoryAsync(int assetCategoryId)
+        {
+            await _assetCategoryService.DeleteAssetCategoryAsync(assetCategoryId);
+            return Ok(new { message = "Asset category successfully deleted" });
+        }
     }
 }

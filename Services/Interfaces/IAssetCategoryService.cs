@@ -7,5 +7,9 @@ namespace AssetTracker.Api.Services.Interfaces
         Task<List<GetAllAssetCategoryDto>> GetAllAssetCategoryAsync();
 
         Task CreateAssetCategoryAsync(CreateAssetCategoryDto dto);
+
+        Task PatchAssetCategoryAsync(int assetCategoryId, PatchAssetCategoryDto dto);
+
+        Task DeleteAssetCategoryAsync(int assetCategoryId);
     }
 }

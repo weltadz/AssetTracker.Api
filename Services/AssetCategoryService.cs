@@ -15,6 +15,7 @@ namespace AssetTracker.Api.Services
             _dbContext = dbContext;
         }
 
+        //Get all categories
         public async Task<List<GetAllAssetCategoryDto>> GetAllAssetCategoryAsync()
         {
             return await _dbContext.AssetCategories
@@ -26,6 +27,7 @@ namespace AssetTracker.Api.Services
                 }).ToListAsync();
         }
 
+        //Create Category
         public async Task CreateAssetCategoryAsync(CreateAssetCategoryDto dto)
         {
             var exist = await _dbContext.AssetCategories
@@ -42,6 +44,37 @@ namespace AssetTracker.Api.Services
             };
 
             await _dbContext.AssetCategories.AddAsync(exist);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        //Patch Category
+        public async Task PatchAssetCategoryAsync(int assetCategoryId, PatchAssetCategoryDto dto)
+        {
+            var category = await _dbContext.AssetCategories
+                .FirstOrDefaultAsync(c => c.AssetCategoryId == assetCategoryId);
+
+            if(category == null)
+            {
+                throw new KeyNotFoundException("Asset category does not exists");
+            }
+
+            category.AssetCategoryName = string.IsNullOrWhiteSpace(dto.AssetCategoryName) ? category.AssetCategoryName : dto.AssetCategoryName;
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        //Delete Category
+        public async Task DeleteAssetCategoryAsync(int assetCategoryId)
+        {
+            var category = await _dbContext.AssetCategories
+                .FirstOrDefaultAsync(c => c.AssetCategoryId == assetCategoryId);
+
+            if(category == null)
+            {
+                throw new KeyNotFoundException("Asset category does not exists");
+            }
+
+            _dbContext.AssetCategories.Remove(category);
             await _dbContext.SaveChangesAsync();
         }
     }
