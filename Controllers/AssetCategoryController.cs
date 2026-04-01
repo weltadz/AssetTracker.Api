@@ -1,5 +1,5 @@
 ﻿using AssetTracker.Api.Dto.AssetCategoryDto;
-using AssetTracker.Api.Services.Interfaces;
+using AssetTracker.Api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +9,9 @@ namespace AssetTracker.Api.Controllers
     [ApiController]
     public class AssetCategoryController : ControllerBase
     {
-        private readonly IAssetCategoryService _assetCategoryService;
+        private readonly AssetCategoryService _assetCategoryService;
 
-        public AssetCategoryController(IAssetCategoryService assetCategoryService)
+        public AssetCategoryController(AssetCategoryService assetCategoryService)
         {
             _assetCategoryService = assetCategoryService;
         }
