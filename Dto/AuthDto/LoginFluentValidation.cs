@@ -2,9 +2,9 @@
 
 namespace AssetTracker.Api.Dto.AuthDto
 {
-    public class ValidateFluentValidation : AbstractValidator<ValidateDto>
+    public class LoginFluentValidation : AbstractValidator<LoginDto>
     {
-        public ValidateFluentValidation()
+        public LoginFluentValidation()
         {
             RuleFor(x => x.Username)
                 .NotEmpty()

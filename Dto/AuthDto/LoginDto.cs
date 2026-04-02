@@ -1,6 +1,6 @@
 ﻿namespace AssetTracker.Api.Dto.AuthDto
 {
-    public class ValidateDto
+    public class LoginDto
     {
         public string Username { get; set; } = null!;
 

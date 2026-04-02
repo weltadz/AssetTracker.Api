@@ -42,6 +42,18 @@
                     message = ex.Message
                 });
             }
+            catch(UnauthorizedAccessException ex)
+            {
+                _logger.LogWarning(ex, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Response.ContentType = "application/json";
+
+                await context.Response.WriteAsJsonAsync(new
+                {
+                    message = ex.Message
+                });
+            }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Unhandled Error");

@@ -15,7 +15,7 @@ namespace AssetTracker.Api.Services
             _assetDbContext = assetDbContext;
         }
 
-        public async Task<bool> ValidateUserAsync(ValidateDto dto)
+        public async Task<User> ValidateUserAsync(LoginDto dto)
         {
             var user = await _assetDbContext.Users
                 .FirstOrDefaultAsync(u => u.UserName == dto.Username);
@@ -34,7 +34,7 @@ namespace AssetTracker.Api.Services
                 throw new InvalidOperationException("Invalid Credentials");
             }
 
-            return true;
+            return user;
         }
     }
 }
