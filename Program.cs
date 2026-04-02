@@ -15,6 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AssetDbContext>(options => options.UseSqlServer(Asset_Tracker_Db));
 builder.Services.AddScoped<AssetCategoryService>();
 builder.Services.AddScoped<AssetLocationService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ValidateService>();
 
 
 //Fluent Validation
