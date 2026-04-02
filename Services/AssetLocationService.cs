@@ -58,7 +58,10 @@ namespace AssetTracker.Api.Services
                 throw new KeyNotFoundException("Location does not exists");
             }
 
-            if(location.AssetLocationName == dto.AssetLocationName)
+            var exist = await _dbContext.AssetLocations
+                .FirstOrDefaultAsync(al => al.AssetLocationName == dto.AssetLocationName);
+
+            if(exist != null)
             {
                 throw new InvalidOperationException("Location already exists");
             }
@@ -66,6 +69,21 @@ namespace AssetTracker.Api.Services
             location.AssetLocationName = string.IsNullOrWhiteSpace(dto.AssetLocationName) ?
                 location.AssetLocationName : dto.AssetLocationName;
 
+            await _dbContext.SaveChangesAsync();
+        }
+
+        //Delete Location
+        public async Task DeleteAssetLocationAsync(int assetLocationId)
+        {
+            var location = await _dbContext.AssetLocations
+                .FirstOrDefaultAsync(al => al.AssetLocationId == assetLocationId);
+
+            if(location == null)
+            {
+                throw new KeyNotFoundException("Location does not exists");
+            }
+
+            _dbContext.AssetLocations.Remove(location);
             await _dbContext.SaveChangesAsync();
         }
     }
